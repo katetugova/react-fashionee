@@ -189,6 +189,11 @@
     background: rgba(241, 242, 243, 1);
 }
 
+.shop .sidebar .sidebar-item .sidebar-content .reviewed-products .product .image img {
+    max-width: 100%;
+    object-fit: cover;
+}
+
 .shop .sidebar .sidebar-item .sidebar-content .reviewed-products .product .info {
     max-width: 150px;
     display: flex;

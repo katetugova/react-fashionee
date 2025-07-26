@@ -1,9 +1,10 @@
 import React from "react";
-import { useFavorites } from "../context/FavoritesContext";
-import { useCart } from "../context/CartContext";
-import '../styles/header.css';
+import { Link } from "react-router-dom";
+import { useFavorites } from "../../context/FavoritesContext";
+import { useCart } from "../../context/CartContext";
+import "../../styles/header.css";
 
-function Header({ onNavigate }) {
+function Header() {
     const { favorites } = useFavorites();
     const { totalItems } = useCart();
 
@@ -20,25 +21,25 @@ function Header({ onNavigate }) {
                     </div>
                 </div>
                 <div className="menu">
-                    <div className="menu-item">
+                    <Link className="menu-item" to="#">
                         <span>Home</span>
-                    </div>
-                    <div className="menu-item">
+                    </Link>
+                    <Link className="menu-item" to="#">
                         <span>Pages</span>
                         <img src="/icons/arrow.svg" alt="arrow" className="arrow-default" />
                         <img src="/icons/arrow-pink.svg" alt="arrow" className="arrow-hover" />
-                    </div>
-                    <div className="menu-item active" onClick={() => onNavigate("shop")}>
+                    </Link>
+                    <Link className="menu-item" to="/">
                         <span>Shop</span>
                         <img src="/icons/arrow.svg" alt="arrow" className="arrow-default" />
                         <img src="/icons/arrow-pink.svg" alt="arrow" className="arrow-hover" />
-                    </div>
-                    <div className="menu-item">
+                    </Link>
+                    <Link className="menu-item" to="#">
                         <span>Blog</span>
-                    </div>
-                    <div className="menu-item">
+                    </Link>
+                    <Link className="menu-item" to="#">
                         <span>Contact</span>
-                    </div>
+                    </Link>
                 </div>
             </div>
             <div className="right-side">
@@ -52,10 +53,10 @@ function Header({ onNavigate }) {
                     <img src="/icons/heart.svg" alt="favorites" />
                     <div className="counter">{favorites.length}</div>
                 </div>
-                <div className="header-icon" onClick={() => onNavigate("cart")}>
+                <Link className="header-icon" to="/cart">
                     <img src="/icons/cart.svg" alt="cart" />
                     <div className="counter">{totalItems}</div>
-                </div>
+                </Link >
             </div>
         </header>
     );

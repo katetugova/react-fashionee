@@ -1,6 +1,6 @@
 import React from "react";
-import { useFavorites } from "../context/FavoritesContext";
-import { useCart } from "../context/CartContext";
+import { useFavorites } from "../../context/FavoritesContext";
+import { useCart } from "../../context/CartContext";
 
 function ProductCard({ product }) {
     const {
@@ -19,6 +19,12 @@ function ProductCard({ product }) {
     const { cart, addToCart, updateQuantity } = useCart();
     const cartItem = cart.find(item => item.id === id);
     const quantity = cartItem?.quantity || 0;
+
+    const saveToRecentlyViewed = (id) => {
+        const viewed = JSON.parse(localStorage.getItem("recentlyViewed") || "[]");
+        const updated = [...new Set([id, ...viewed])].slice(0, 3);
+        localStorage.setItem("recentlyViewed", JSON.stringify(updated));
+    };
 
     return (
         <div className="product">
@@ -39,13 +45,16 @@ function ProductCard({ product }) {
                     {name}
                 </div>
                 <div className="price">
-                    <div className="current-price">{price}</div>
-                    {oldPrice && (<div className="old-price">{oldPrice}</div>)}
+                    <div className="current-price">${price}</div>
+                    {oldPrice && (<div className="old-price">${oldPrice}</div>)}
                 </div>
             </div>
             <div className="product-actions">
                 {quantity === 0 ? (
-                    <button className="buy-button" onClick={() => addToCart(product)}>Buy</button>
+                    <button className="buy-button" onClick={() => {
+                        saveToRecentlyViewed(product.id);
+                        addToCart(product);
+                    }}>Buy</button>
                 ) : (
                     <div className="quantity-controls">
                         <button onClick={() => updateQuantity(id, quantity - 1)}>-</button>

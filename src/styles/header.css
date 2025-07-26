@@ -85,6 +85,8 @@
     font-size: 14px;
     font-weight: 500;
     line-height: 16px;
+    text-decoration: none;
+    color: inherit;
 }
 
 .header .left-side .menu .menu-item.active,

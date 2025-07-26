@@ -1,49 +1,29 @@
 import React from "react";
-import { useState } from "react";
 import './styles/reset.css';
 import './styles/common.css';
-import Header from "./components/Header";
-import ContentBlock from "./components/ContentBlock";
-import Footer from "./components/Footer";
-import Showcase from "./components/Showcase";
-import Cart from "./components/Cart";
+import Header from "./components/ui/Header";
+import Footer from "./components/ui/Footer";
+import Showcase from "./pages/Showcase";
+import Cart from "./pages/Cart";
 import { CartProvider } from "./context/CartContext";
 import { FavoritesProvider } from "./context/FavoritesContext";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
-  const [currentPage, setCurrentPage] = useState("shop");
-
-  const pageConfig = {
-    shop: {
-      title: "Shop",
-      breadcrumbs: [
-        { label: "Home", href: "/" },
-        { label: "Shop", active: true }
-      ]
-    },
-    cart: {
-      title: "Cart",
-      breadcrumbs: [
-        { label: "Home", href: "/" },
-        { label: "Shop", href: "#", },
-        { label: "Cart", active: true }
-      ]
-    }
-  };
-
-  const { title, breadcrumbs } = pageConfig[currentPage];
-
   return (
     <CartProvider>
       <FavoritesProvider>
-        <Header onNavigate={setCurrentPage} />
-        <ContentBlock title={title} breadcrumbs={breadcrumbs} onBreadcrumbClick={setCurrentPage} />
-        {currentPage === "shop" && <Showcase />}
-        {currentPage === "cart" && <Cart />}
-        <Footer />
+        <BrowserRouter>
+          <Header />
+          <Routes>
+            <Route path="/" element={<Showcase />} />
+            <Route path="/cart" element={<Cart />} />
+          </Routes>
+          <Footer />
+        </BrowserRouter>
       </FavoritesProvider>
     </CartProvider>
-  )
+  );
 }
 
 export default App;

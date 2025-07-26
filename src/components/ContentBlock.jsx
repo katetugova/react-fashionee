@@ -1,8 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import '../styles/cart.css';
 import '../styles/common.css';
 
-function ContentBlock({ title, breadcrumbs, onBreadcrumbClick }) {
+function ContentBlock({ title, breadcrumbs }) {
     return (
         <div className="container-big mt-200">
             <div className="photo-main-screen"></div>
@@ -15,20 +16,11 @@ function ContentBlock({ title, breadcrumbs, onBreadcrumbClick }) {
                     <ul className="bread-crumbs">
                         {breadcrumbs.map((item, index) => (
                                 <li key={index}>
-                                <a
-                                    href={item.href || "#"}
-                                    className={`item${item.active ? " active" : ""}`}
-                                    onClick={(e) => {
-                                        e.preventDefault();
-                                        if (!item.active && item.label.toLowerCase() === "shop") {
-                                            onBreadcrumbClick("shop");
-                                        }
-                                        if (!item.active && item.label.toLowerCase() === "cart") {
-                                            onBreadcrumbClick("cart");
-                                        }
-                                    }}>
+                                <Link
+                                    to={item.href || "#"}
+                                    className={`item${item.active ? " active" : ""}`}>
                                     {item.label}
-                                </a>
+                                </Link>
                                 </li>
                             ))}
                     </ul>
