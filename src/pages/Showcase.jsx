@@ -6,6 +6,8 @@ import Categories from "../components/filters/Categories";
 import Colors from "../components/filters/Colors";
 import Search from "../components/filters/Search";
 import Price from "../components/filters/Price";
+import Sort from "../components/filters/Sort";
+import Pagination from "../components/filters/Pagination";
 import ContentBlock from "../components/ContentBlock";
 import ReviewedProducts from '../components/shop/ReviewedProducts';
 
@@ -29,6 +31,13 @@ function Showcase() {
     // Состояние по цвету
     const [selectedColors, setSelectedColors] = useState([]); // значение из фильтра
     const [pendingColors, setPendingColors] = useState([]);   // временный выбор
+
+    // Состояние по сортировке
+    const [sortType, setSortType] = useState("relevance");
+
+    // Теукщая страница
+    const [currentPage, setCurrentPage] = useState(1);
+    const productsPerPage = 12;
 
     // Фильтрация продуктов
     const filteredProducts = data.products.filter(product => {
@@ -62,11 +71,34 @@ function Showcase() {
         if (product.price > maxPrice) maxPrice = product.price;
     });
 
-    const pricePlaceholderMin = minPrice.toFixed(0);
-    const pricePlaceholderMax = maxPrice.toFixed(0);
+    const pricePlaceholderMin = `$0`;
+    const pricePlaceholderMax = `$${maxPrice.toFixed(0)}`;
 
     const categories = Array.from(categoriesSet);
     const colors = Array.from(colorsSet);
+
+    const sortedProducts = [...filteredProducts];
+
+    switch (sortType) {
+        case "name-asc":
+            sortedProducts.sort((a, b) => a.name.localeCompare(b.name));
+            break;
+        case "name-desc":
+            sortedProducts.sort((a, b) => b.name.localeCompare(a.name));
+            break;
+        case "price-asc":
+            sortedProducts.sort((a, b) => a.price - b.price);
+            break;
+        case "price-desc":
+            sortedProducts.sort((a, b) => b.price - a.price);
+            break;
+    }
+
+    const startIndex = (currentPage - 1) * productsPerPage;
+    const endIndex = startIndex + productsPerPage;
+    const paginatedProducts = sortedProducts.slice(startIndex, endIndex);
+
+    const totalPages = Math.ceil(sortedProducts.length / productsPerPage);
 
     return (
         <>
@@ -113,6 +145,7 @@ function Showcase() {
                                         setSelectedMinPrice(pendingMinPrice);
                                         setSelectedMaxPrice(pendingMaxPrice);
                                         setSelectedColors(pendingColors);
+                                        setCurrentPage(1);
                                     }}
                                 >
                                     Apply Filter
@@ -132,32 +165,18 @@ function Showcase() {
                             <div className="products-count">
                                 There are <span className="bold">{filteredProducts.length}</span> products in this category
                             </div>
-                            <div className="sort">
-                                <select className="input">
-                                    <option value="relevance">Relevance</option>
-                                    <option value="asc">Asc</option>
-                                    <option value="desc">Desc</option>
-                                </select>
-                            </div>
+                            <Sort value={sortType} onChange={setSortType} />
                         </div>
                         <div className="products">
-                            {filteredProducts.map(product => (
+                            {paginatedProducts.map(product => (
                                 <ProductCard key={product.id} product={product} />
                             ))}
                         </div>
-                        <div className="pagination">
-                            <div className="button left">
-                                <img src="/icons/left-pagin-arrow.svg" alt="Left arrow" />
-                            </div>
-                            <div className="pages">
-                                <div className="page active">1</div>
-                                <div className="page">2</div>
-                                <div className="page">3</div>
-                            </div>
-                            <div className="button right">
-                                <img src="/icons/right-pagin-arrow.svg" alt="Right arrow" />
-                            </div>
-                        </div>
+                        <Pagination
+                            currentPage={currentPage}
+                            totalPages={totalPages}
+                            onPageChange={setCurrentPage}
+                        />
                     </div>
                 </div>
             </div>

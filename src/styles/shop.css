@@ -366,6 +366,12 @@
     align-items: center;
 }
 
+.shop .products-wrapper .pagination .button.disabled {
+    opacity: 0.3;
+    pointer-events: none;
+    cursor: default;
+}
+
 .shop .products-wrapper .pagination .pages {
     display: flex;
     gap: 20px;
@@ -380,10 +386,12 @@
     border-bottom: 3px solid rgba(0, 0, 0);
     opacity: 0.3;
     width: 10px;
+    cursor: pointer;
 }
 
 .shop .products-wrapper .pagination .pages .page.active {
     font-weight: 600;
+    color: rgba(0, 0, 0, 1);
     opacity: 1;
     width: 22px;
     text-align: center;
