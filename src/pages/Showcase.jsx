@@ -10,6 +10,7 @@ import Sort from "../components/filters/Sort";
 import Pagination from "../components/filters/Pagination";
 import ContentBlock from "../components/ContentBlock";
 import ReviewedProducts from '../components/shop/ReviewedProducts';
+import useProductMeta from "../hooks/useProductMeta";
 
 function Showcase() {
     // Состояние по поиску
@@ -41,7 +42,7 @@ function Showcase() {
 
     // Фильтрация продуктов
     const filteredProducts = data.products.filter(product => {
-        const matchesSearch = product.name.toLowerCase().includes(searchText);
+        const matchesSearch = product.name.toLowerCase().includes(searchText.toLowerCase());
 
         const matchesCategory = selectedCategory === "All" || product.categories.includes(selectedCategory);
 
@@ -55,27 +56,10 @@ function Showcase() {
     });
 
     //Считывание фильтров
-    const allProducts = data.products;
-
-    const categoriesSet = new Set();
-    const colorsSet = new Set();
-    let minPrice = Infinity;
-    let maxPrice = -Infinity;
-
-    allProducts.forEach(product => {
-        product.categories.forEach(category => categoriesSet.add(category));
-
-        colorsSet.add(product.color);
-
-        if (product.price < minPrice) minPrice = product.price;
-        if (product.price > maxPrice) maxPrice = product.price;
-    });
+    const { categories, colors, minPrice, maxPrice } = useProductMeta(data.products);
 
     const pricePlaceholderMin = `$0`;
     const pricePlaceholderMax = `$${maxPrice.toFixed(0)}`;
-
-    const categories = Array.from(categoriesSet);
-    const colors = Array.from(colorsSet);
 
     const sortedProducts = [...filteredProducts];
 

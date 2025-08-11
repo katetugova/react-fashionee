@@ -21,9 +21,21 @@ function CartItem({ product }) {
                             <div className="current-price">${price}</div>
                         </div>
                         <div className="quantity">
-                            <div className="count-button" onClick={() => updateQuantity(id, quantity - 1)}>-</div>
+                            <button
+                                type="button"
+                                className="count-button"
+                                onClick={() => updateQuantity(id, quantity - 1)}
+                            >
+                                -
+                            </button>
                             <div className="count">{quantity}</div>
-                            <div className="count-button" onClick={() => updateQuantity(id, quantity + 1)}>+</div>
+                            <button
+                                type="button"
+                                className="count-button"
+                                onClick={() => updateQuantity(id, quantity + 1)}
+                            >
+                                +
+                            </button>
                         </div>
                     </div>
                     <div className="total-price">${totalPrice}</div>

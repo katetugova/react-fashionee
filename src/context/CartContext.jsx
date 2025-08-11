@@ -1,17 +1,12 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, { createContext, useContext } from "react";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 const CartContext = createContext();
 
 export const useCart = () => useContext(CartContext);
 
 export const CartProvider = ({ children }) => {
-    const [cart, setCart] = useState(() => {
-        return JSON.parse(localStorage.getItem("cart") || "[]");
-    });
-
-    useEffect(() => {
-        localStorage.setItem("cart", JSON.stringify(cart));
-    }, [cart]);
+    const [cart, setCart] = useLocalStorage("cart", []);
 
     const addToCart = (product) => {
         setCart((prev) => {

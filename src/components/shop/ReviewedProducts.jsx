@@ -1,8 +1,9 @@
 import React from "react";
 import data from '../../data/products.json';
+import useLocalStorage from "../../hooks/useLocalStorage";
 
 function ReviewedProducts() {
-    const viewedIds = JSON.parse(localStorage.getItem("recentlyViewed") || "[]");
+    const [viewedIds] = useLocalStorage("recentlyViewed", []);
     const products = data.products.filter(p => viewedIds.includes(p.id));
     const recentItems = viewedIds.map(id => products.find(p => p.id === id));
 

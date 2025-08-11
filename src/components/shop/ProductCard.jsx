@@ -1,6 +1,7 @@
 import React from "react";
 import { useFavorites } from "../../context/FavoritesContext";
 import { useCart } from "../../context/CartContext";
+import useLocalStorage from "../../hooks/useLocalStorage";
 
 function ProductCard({ product }) {
     const {
@@ -20,10 +21,13 @@ function ProductCard({ product }) {
     const cartItem = cart.find(item => item.id === id);
     const quantity = cartItem?.quantity || 0;
 
+    const [viewed, setViewed] = useLocalStorage("recentlyViewed", []);
+
     const saveToRecentlyViewed = (id) => {
-        const viewed = JSON.parse(localStorage.getItem("recentlyViewed") || "[]");
-        const updated = [...new Set([id, ...viewed])].slice(0, 3);
-        localStorage.setItem("recentlyViewed", JSON.stringify(updated));
+        setViewed(prev => {
+            const updated = [id, ...prev.filter(v => v !== id)].slice(0, 3);
+            return updated;
+        });
     };
 
     return (

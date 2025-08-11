@@ -1,6 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 
-function PromoSection() {
+function PromoSection({ applyPromo }) {
+    const [promoCodeInput, setPromoCodeInput] = useState("");
+
+    const handleApply = () => {
+        applyPromo(promoCodeInput.trim());
+    };
+
     return (
         <div className="promo-code-wrapper">
         <div className="info">
@@ -9,9 +15,16 @@ function PromoSection() {
                 networks.</div>
         </div>
         <div className="promo-code">
-            <input type="text" name="promo-code" className="input" placeholder="Enter promo code" />
+                <input
+                    type="text"
+                    name="promo-code"
+                    className="input"
+                    placeholder="Enter promo code"
+                    value={promoCodeInput}
+                    onChange={(e) => setPromoCodeInput(e.target.value)}
+                />
             <div className="button-wrapper">
-                <button className="button">
+                    <button className="button" type="button" onClick={handleApply}>
                     <img src="/icons/button-arrow.svg" alt="Arrow icon" />
                 </button>
             </div>
