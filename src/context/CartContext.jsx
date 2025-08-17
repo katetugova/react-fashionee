@@ -25,11 +25,16 @@ export const CartProvider = ({ children }) => {
     };
 
     const updateQuantity = (id, quantity) => {
-        if (quantity <= 0) {
+        let q = Number(quantity);
+        if (Number.isNaN(q)) return;       
+        q = Math.floor(q);
+
+        if (q <= 0) {
             removeFromCart(id);
+            return;
         } else {
             setCart((prev) =>
-                prev.map((item) => item.id === id ? { ...item, quantity } : item)
+                prev.map((item) => item.id === id ? { ...item, quantity: q } : item)
             );
         }
     };

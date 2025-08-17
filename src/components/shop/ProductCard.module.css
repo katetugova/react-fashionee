@@ -1,0 +1,97 @@
+.product {
+    max-width: 262px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.photo {
+    height: 360px;
+    background: #F1F2F3;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.topBar {
+    position: absolute;
+    top: 15px;
+    left: 20px;
+    display: flex;
+    justify-content: space-between;
+    max-width: 222px;
+    width: 100%;
+}
+
+.photo img {
+    max-height: 100%;
+    object-fit: cover;
+}
+
+.labels {
+    display: flex;
+    gap: 15px;
+}
+
+.label {
+    font-size: 10px;
+    font-weight: 800;
+    color: rgba(255, 255, 255, 1);
+    text-transform: uppercase;
+    padding: 5px 10px;
+    background: rgba(255, 142, 142, 1);
+}
+
+.labels .label.new {
+    background: rgba(149, 204, 181, 1);
+}
+
+.favorites {
+    cursor: pointer;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+.name {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 27px;
+    color: rgba(68, 68, 68, 1);
+}
+
+.buyButton {
+    padding: 15px 12px;
+    width: 100%;
+    background-color: black;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.quantityControls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    background: rgba(248, 248, 251, 1);
+    padding: 10px 15px;
+}
+
+.quantityControls button {
+    cursor: pointer;
+    align-items: center;
+    background: none;
+    border: none;
+    color: rgba(153, 153, 153, 1);
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 16px;
+}

@@ -1,0 +1,13 @@
+.search {
+    position: relative;
+}
+
+.searchRow {
+    padding: 0 25px 15px 0;
+}
+
+.searchIcon {
+    position: absolute;
+    top: 0;
+    right: 0;
+}

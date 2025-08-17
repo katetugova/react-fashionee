@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import '../styles/cart.css';
 import '../styles/common.css';
 
 function ContentBlock({ title, breadcrumbs }) {

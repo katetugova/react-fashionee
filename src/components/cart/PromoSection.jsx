@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import styles from "./PromoSection.module.css";
 
 function PromoSection({ applyPromo }) {
     const [promoCodeInput, setPromoCodeInput] = useState("");
@@ -8,23 +9,23 @@ function PromoSection({ applyPromo }) {
     };
 
     return (
-        <div className="promo-code-wrapper">
-        <div className="info">
-            <div className="title">You Have A Promo Code?</div>
-            <div className="description">To receive up-to-date promotional codes, subscribe to us on social
+        <div className={styles.promoCodeWrapper}>
+            <div className={styles.info}>
+                <div className={styles.title}>You Have A Promo Code?</div>
+                <div className={styles.description}>To receive up-to-date promotional codes, subscribe to us on social
                 networks.</div>
         </div>
-        <div className="promo-code">
+            <div className={styles.promoCode}>
                 <input
                     type="text"
                     name="promo-code"
-                    className="input"
+                    className="input-base"
                     placeholder="Enter promo code"
                     value={promoCodeInput}
                     onChange={(e) => setPromoCodeInput(e.target.value)}
                 />
-            <div className="button-wrapper">
-                    <button className="button" type="button" onClick={handleApply}>
+                <div className={styles.buttonWrapper}>
+                    <button className={styles.button} type="button" onClick={handleApply}>
                     <img src="/icons/button-arrow.svg" alt="Arrow icon" />
                 </button>
             </div>

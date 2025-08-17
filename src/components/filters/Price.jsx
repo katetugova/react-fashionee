@@ -1,15 +1,16 @@
 import React from "react";
+import styles from "./Price.module.css";
 
 function Price({ minPrice, maxPrice, placeholderMin, placeholderMax, onMinChange, onMaxChange }) {
     return (
         <div className="sidebar-item">
             <div className="sidebar-title">Price</div>
             <div className="sidebar-content">
-                <div className="price-bar">
+                <div className={styles.priceBar}>
                     <input
                         type="text"
                         placeholder={placeholderMin}
-                        className="input"
+                        className="input-base"
                         pattern=""
                         value={minPrice}
                         onChange={(e) => onMinChange(e.target.value)}
@@ -17,7 +18,7 @@ function Price({ minPrice, maxPrice, placeholderMin, placeholderMax, onMinChange
                     <input
                         type="text"
                         placeholder={placeholderMax}
-                        className="input"
+                        className="input-base"
                         pattern=""
                         value={maxPrice}
                         onChange={(e) => onMaxChange(e.target.value)}

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import data from '../data/products.json';
 import ProductCard from '../components/shop/ProductCard';
 import '../styles/shop.css';
@@ -15,6 +15,10 @@ import useProductMeta from "../hooks/useProductMeta";
 function Showcase() {
     // Состояние по поиску
     const [searchText, setSearchText] = useState("");
+
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [searchText]);
 
     // Состояние по категории
     const [selectedCategory, setSelectedCategory] = useState("All"); // значение из фильтра
@@ -35,6 +39,10 @@ function Showcase() {
 
     // Состояние по сортировке
     const [sortType, setSortType] = useState("relevance");
+
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [sortType]);
 
     // Теукщая страница
     const [currentPage, setCurrentPage] = useState(1);

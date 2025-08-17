@@ -2,6 +2,7 @@ import React from "react";
 import { useFavorites } from "../../context/FavoritesContext";
 import { useCart } from "../../context/CartContext";
 import useLocalStorage from "../../hooks/useLocalStorage";
+import styles from "./ProductCard.module.css";
 
 function ProductCard({ product }) {
     const {
@@ -31,36 +32,36 @@ function ProductCard({ product }) {
     };
 
     return (
-        <div className="product">
-            <div className="photo">
+        <div className={styles.product}>
+            <div className={styles.photo}>
                 <img src={image} alt={name} />
-                <div className="top-bar">
-                    <div className="labels">
-                        {isSale && <div className="label sale">Sale</div>}
-                        {isNew && <div className="label new">New</div>}
+                <div className={styles.topBar}>
+                    <div className={styles.labels}>
+                        {isSale && <div className={`${styles.label} ${styles.sale}`}>Sale</div>}
+                        {isNew && <div className={`${styles.label} ${styles.new}`}>New</div>}
                     </div>
-                    <div className="favorites" onClick={() => toggleFavorite(id)}>
+                    <div className={styles.favorites} onClick={() => toggleFavorite(id)}>
                         <img src={isFavorite ? "/icons/heart-filled.svg" : "/icons/heart.svg"} alt="favorites" />
                     </div>
                 </div>
             </div>
-            <div className="info">
-                <div className="name">
+            <div className={styles.info}>
+                <div className={styles.name}>
                     {name}
                 </div>
-                <div className="price">
-                    <div className="current-price">${price}</div>
-                    {oldPrice && (<div className="old-price">${oldPrice}</div>)}
+                <div className="price-base">
+                    <div className="current-price-base">${price}</div>
+                    {oldPrice && (<div className="old-price-base">${oldPrice}</div>)}
                 </div>
             </div>
-            <div className="product-actions">
+            <div className={styles.productActions}>
                 {quantity === 0 ? (
-                    <button className="buy-button" onClick={() => {
+                    <button className={styles.buyButton} onClick={() => {
                         saveToRecentlyViewed(product.id);
                         addToCart(product);
                     }}>Buy</button>
                 ) : (
-                    <div className="quantity-controls">
+                    <div className={styles.quantityControls}>
                         <button onClick={() => updateQuantity(id, quantity - 1)}>-</button>
                         <span>{quantity}</span>
                         <button onClick={() => updateQuantity(id, quantity + 1)}>+</button>

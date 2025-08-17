@@ -1,16 +1,16 @@
 import React from "react";
-import "../../styles/footer.css";
+import styles from "./Footer.module.css";
 
 function Footer() {
     return (
-        <footer className="footer">
+        <footer className={styles.footer}>
             <div className="container">
-                <div className="footer-info">
-                    <div className="column column-1">
-                        <div className="logo">
+                <div className={styles.footerInfo}>
+                    <div className={`${styles.column} ${styles.column1}`}>
+                        <div className={styles.logo}>
                             <img src="/icons/logo.svg" alt="logo" />
                         </div>
-                        <div className="about-brand">
+                        <div className={styles.aboutBrand}>
                             Cillum eu id enim aliquip aute ullamco anim. Culpa deserunt nostrud excepteur voluptate.
                         </div>
                         <div className="find-us">
@@ -34,65 +34,70 @@ function Footer() {
                             </div>
                         </div>
                     </div>
-                    <div className="column column-2">
-                        <div className="title">About</div>
-                        <ul className="custom-list">
-                            <li className="item"><a href="">About us</a></li>
-                            <li className="item"><a href="">Collections</a></li>
-                            <li className="item"><a href="">Shop</a></li>
-                            <li className="item"><a href="">Blog</a></li>
-                            <li className="item"><a href="">Contact us</a></li>
+                    <div className={`${styles.column} ${styles.column2}`}>
+                        <div className={styles.title}>About</div>
+                        <ul className={styles.customList}>
+                            <li className={styles.item}><a href="">About us</a></li>
+                            <li className={styles.item}><a href="">Collections</a></li>
+                            <li className={styles.item}><a href="">Shop</a></li>
+                            <li className={styles.item}><a href="">Blog</a></li>
+                            <li className={styles.item}><a href="">Contact us</a></li>
                         </ul>
                     </div>
-                    <div className="column column-3">
-                        <div className="title">Useful links</div>
-                        <ul className="custom-list">
-                            <li className="item"><a href="">Privacy Policy</a></li>
-                            <li className="item"><a href="">Terms of use</a></li>
-                            <li className="item"><a href="">Support</a></li>
-                            <li className="item"><a href="">Shipping details</a></li>
-                            <li className="item"><a href="">FAQs</a></li>
+                    <div className={`${styles.column} ${styles.column3}`}>
+                        <div className={styles.title}>Useful links</div>
+                        <ul className={styles.customList}>
+                            <li className={styles.item}><a href="">Privacy Policy</a></li>
+                            <li className={styles.item}><a href="">Terms of use</a></li>
+                            <li className={styles.item}><a href="">Support</a></li>
+                            <li className={styles.item}><a href="">Shipping details</a></li>
+                            <li className={styles.item}><a href="">FAQs</a></li>
                         </ul>
                     </div>
-                    <div className="column column-4">
-                        <div className="title">Newsletter</div>
-                        <div className="newsletter-text">
+                    <div className={`${styles.column} ${styles.column4}`}>
+                        <div className={styles.title}>Newsletter</div>
+                        <div className={styles.newsletterText}>
                             Subscribe to be the first to hear about deals, offers and upcoming collections.
                         </div>
-                        <div className="newsletter-form">
+                        <div className={styles.newsletterForm}>
                             <form action="">
-                                <label>
-                                    <input type="text" placeholder="Enter your email" className="input" />
-                                    <img src="/icons/send.svg" alt="send" className="send-icon" />
+                                <label htmlFor="input-subscription">
+                                    <input
+                                        id="input-subscription"
+                                        type="email"
+                                        placeholder="Enter your email"
+                                        name="email"
+                                        className={`input-base ${styles.inputNewsletterForm}`} />
+                                    <img src="/icons/send.svg" alt="send" className={styles.sendIcon} />
                                 </label>
                             </form>
                         </div>
                     </div>
                 </div>
-                <div className="copyright">
+                <div className={styles.copyright}>
                     <div>
                         © All right reserved. Fashionee 2020
                     </div>
-                    <div className="payment-methods-container">
+                    <div className={styles.paymentMethodsContainer}>
                         <div>Payment methods:</div>
-                        <div className="payment-methods">
-                            <div className="payment-method">
+                        <div className={styles.paymentMethods}>
+                            <div className={styles.paymentMethod}>
                                 <img src="/icons/visa.svg" alt="Visa" />
                             </div>
-                            <div className="payment-method">
+                            <div className={styles.paymentMethod}>
                                 <img src="/icons/mastercard.svg" alt="Mastercard" />
                             </div>
-                            <div className="payment-method">
+                            <div className={styles.paymentMethod}>
                                 <img src="/icons/paypal.svg" alt="PayPal" />
                             </div>
-                            <div className="payment-method">
+                            <div className={styles.paymentMethod}>
                                 <img src="/icons/payoneer.svg" alt="Payoneer" />
                             </div>
                         </div>
                     </div>
                 </div>
-                <img src="/images/dots-small.svg" alt="" className="dots-left" />
-                <img src="/images/dots-10row.svg" alt="" className="dots-right" />
+                <img src="/images/dots-small.svg" alt="" className={styles.dotsLeft} />
+                <img src="/images/dots-10row.svg" alt="" className={styles.dotsRight} />
             </div>
         </footer>
     );

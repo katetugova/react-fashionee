@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import styles from "./Search.module.css";
 
 function Search({ onSearch }) {
     const [inputValue, setInputValue] = useState("");
@@ -12,10 +13,10 @@ function Search({ onSearch }) {
     }, [inputValue, onSearch]);
 
     return (
-        <div className="search">
+        <div className={styles.search}>
             <label>
-                <input type="text" placeholder="Search" className="input search-row" value={inputValue} onChange={(e) => setInputValue(e.target.value)} />
-                <img src="/icons/search.svg" alt="Search icon" className="search-icon" />
+                <input type="text" placeholder="Search" className={`input-base ${styles.searchRow}`} value={inputValue} onChange={(e) => setInputValue(e.target.value)} />
+                <img src="/icons/search.svg" alt="Search icon" className={styles.searchIcon} />
             </label>
         </div>
     );

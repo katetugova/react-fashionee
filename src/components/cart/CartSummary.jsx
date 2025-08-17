@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import styles from "./CartSummary.module.css";
 
 function CartSummary({ orderPrice, delivery, promoCode }) {
     const discountRate = 10;
@@ -7,7 +8,7 @@ function CartSummary({ orderPrice, delivery, promoCode }) {
     const totalWithDiscount = orderPrice - discount + delivery;
 
     const handleCheckout = () => {
-        const orderData = {
+        const orderData = { 
             orderPrice: orderPrice.toFixed(2),
             delivery,
             discount: isPromoValid ? `${discountRate}%` : "No",
@@ -18,32 +19,32 @@ function CartSummary({ orderPrice, delivery, promoCode }) {
     };
     
     return (
-        <div className="order">
-            <div className="title">Your Order</div>
-            <div className="order-price-wrapper">
-                <div className="price-row">
-                    <div className="name">Order price</div>
-                    <div className="price">${orderPrice.toFixed(2)}</div>
+        <div className={styles.order}>
+            <div className={styles.title}>Your Order</div>
+            <div className={styles.orderPriceWrapper}>
+                <div className={styles.priceRow}>
+                    <div className={styles.name}>Order price</div>
+                    <div className={styles.price}>${orderPrice.toFixed(2)}</div>
                 </div>
-                <div className="price-row">
-                    <div className="name">Discount for promo code</div>
-                    <div className="price">
+                <div className={styles.priceRow}>
+                    <div className={styles.name}>Discount for promo code</div>
+                    <div className={styles.price}>
                         {isPromoValid ? `${discountRate}%` : "No"}
                     </div>
                 </div>
-                <div className="price-row delimiter">
-                    <div className="name">
-                        Delivery <span className="additional">(Aug 02 at 16:00)</span>
+                <div className={`${styles.priceRow} ${styles.delimiter}`}>
+                    <div className={styles.name}>
+                        Delivery <span className={styles.additional}>(Aug 02 at 16:00)</span>
                     </div>
-                    <div className="price">${delivery}</div>
+                    <div className={styles.price}>${delivery}</div>
                 </div>
-                <div className="price-row total">
-                    <div className="name">Total</div>
-                    <div className="price">${totalWithDiscount.toFixed(2)}</div>
+                <div className={`${styles.priceRow} ${styles.total}`}>
+                    <div className={styles.name}>Total</div>
+                    <div className={styles.price}>${totalWithDiscount.toFixed(2)}</div>
                 </div>
             </div>
-            <div className="button-wrapper" onClick={handleCheckout}>
-                <button className="button">Checkout</button>
+            <div className={styles.buttonWrapper} onClick={handleCheckout}>
+                <button className={styles.button}>Checkout</button>
             </div>
         </div>
     );

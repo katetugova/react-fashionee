@@ -20,6 +20,82 @@ html, body {
     position: relative;
 }
 
+.container-big {
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+}
+
+.photo-main-screen {
+    max-width: 800px;
+    width: 100%;
+    height: 400px;
+    background-color: rgba(241, 242, 243, 1);
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.dots-main-screen {
+    position: absolute;
+    top: -111px;
+    left: -330px;
+}
+
+.main-screen-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    margin-bottom: 20px;
+}
+
+.main-screen-wrapper .title {
+    font-family: Josefin Sans;
+    font-size: 80px;
+    font-weight: 400;
+    line-height: 80px;
+    color: rgba(0, 0, 0, 1);
+}
+
+.main-screen-wrapper .bread-crumbs {
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+    gap: 12px;
+    position: relative;
+}
+
+.main-screen-wrapper .bread-crumbs::before {
+    content: '';
+    display: block;
+    width: 1px;
+    background: rgba(0, 0, 0, 1);
+    height: 15px;
+}
+
+.main-screen-wrapper .bread-crumbs .item {
+    text-decoration: 0;
+    color: rgba(0, 0, 0, 1);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 14px;
+    text-align: left;
+}
+
+.main-screen-wrapper .bread-crumbs .item.active {
+    color: rgba(255, 142, 142, 1);
+}
+
+.horizontal-line {
+    position: absolute;
+    max-width: 850px;
+    width: 100%;
+    height: 2px;
+    background-color: black;
+    z-index: -1;
+    transform: translateX(-50%);
+}
+
 .mt-120 {
     margin-bottom: 120px;
 }
@@ -32,7 +108,7 @@ html, body {
     margin-bottom: 250px;
 }
 
-.container .input {
+.input-base { 
     border: none;
     border-bottom: 1px solid rgba(68, 68, 68, 0.2);
     width: 100%;
@@ -44,11 +120,11 @@ html, body {
     line-height: 24px;
 }
 
-.container .input::placeholder {
+.input-base::placeholder {
     color: rgba(68, 68, 68, 0.3);
 }
 
-.container .button-wrapper {
+.button-wrapper {
     display: flex;
     gap: 2px;
     align-items: center;
@@ -57,7 +133,7 @@ html, body {
     cursor: pointer;
 }
 
-.container .button-wrapper .button {
+.button-wrapper .button {
     color: rgba(255, 255, 255, 1);
     font-size: 16px;
     font-weight: 600;
@@ -70,26 +146,26 @@ html, body {
     text-align: center;
 }
 
-.container .button-wrapper .vertical-line {
+.button-wrapper .vertical-line {
     min-width: 2px;
     height: 100%;
     background: rgba(0, 0, 0, 1);
 }
 
-.container .price {
+.price-base {
     display: flex;
     gap: 15px;
     align-items: center;
 }
 
-.container .price .current-price {
+.current-price-base {
     font-family: Josefin Sans;
     font-size: 20px;
     font-weight: 400;
     line-height: 20px;
 }
 
-.container .price .old-price {
+.old-price-base {
     font-family: Josefin Sans;
     font-size: 16px;
     font-weight: 300;
@@ -98,14 +174,14 @@ html, body {
     text-decoration: line-through;
 }
 
-.container .custom-list {
+.custom-list {
     list-style: none;
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
 
-.container .custom-list .item {
+.custom-list .item {
     color: rgba(68, 68, 68, 1);
     display: flex;
     align-items: center;
@@ -116,7 +192,7 @@ html, body {
     line-height: 27px;
 }
 
-.container .custom-list .item::before {
+.custom-list .item::before {
     content: '';
     display: block;
     width: 5px;
@@ -124,13 +200,13 @@ html, body {
     background-image: url("../icons/square.svg");
 }
 
-.container .custom-list .item.active {
+.custom-list .item.active {
     color: rgba(255, 142, 142, 1);
     display: flex;
     align-items: center;
 }
 
-.container .custom-list .item.active::before {
+.custom-list .item.active::before {
     content: '';
     display: block;
     width: 25px;
@@ -138,7 +214,7 @@ html, body {
     background-image: url("../icons/small-row.svg");
 }
 
-.container .find-us .find-us-text {
+.find-us .find-us-text {
     margin: 0 0 20px 0;
     font-size: 16px;
     font-weight: 500;
@@ -146,13 +222,13 @@ html, body {
     color: rgba(0, 0, 0, 1);
 }
 
-.container .find-us .find-us-links {
+.find-us .find-us-links {
     display: flex;
     gap: 15px;
     align-items: center;
 }
 
-.container .find-us .find-us-links .find-us-link a {
+.find-us .find-us-links .find-us-link a {
     text-decoration: none;
     font-size: 12px;
     font-weight: 600;
@@ -160,7 +236,7 @@ html, body {
     color: rgba(68, 68, 68, 1);
 }
 
-.container .find-us .find-us-links .line {
+.find-us .find-us-links .line {
     border-bottom: 1px solid rgba(68, 68, 68, 1);
     width: 10px;
     height: 1px;

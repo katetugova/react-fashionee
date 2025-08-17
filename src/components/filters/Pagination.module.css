@@ -1,0 +1,38 @@
+.pagination {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    gap: 30px;
+    align-items: center;
+}
+
+.pagination .button.disabled {
+    opacity: 0.3;
+    pointer-events: none;
+    cursor: default;
+}
+
+.pages {
+    display: flex;
+    gap: 20px;
+}
+
+.page {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 16px;
+    height: 25px;
+    color: rgba(0, 0, 0, 0.3);
+    border-bottom: 3px solid rgba(0, 0, 0);
+    opacity: 0.3;
+    width: 10px;
+    cursor: pointer;
+}
+
+.page.active {
+    font-weight: 600;
+    color: rgba(0, 0, 0, 1);
+    opacity: 1;
+    width: 22px;
+    text-align: center;
+}
